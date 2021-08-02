@@ -90,8 +90,8 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.context.beginPath();
       this.context.moveTo(initialX, initialY);
       this.context.lineTo(x, y);
-      this.context.strokeStyle = color
-      this.context.stroke()
+      this.context.strokeStyle = color;
+      this.context.stroke();
     }
 
     private drawCircle(x: number, y: number, size: number, color: string): void {
