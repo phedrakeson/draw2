@@ -88,14 +88,14 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       $event.preventDefault();
       const touches = $event.changedTouches;
 
-      for(let i; i < touches.length; i++) this.ongoingTouches.push(this.copyTouch(touches[i]));
+      for(let i = 0; i < touches.length; i++) this.ongoingTouches.push(this.copyTouch(touches[i]));
     }
 
     public handleTouchEnd($event: TouchEvent): void {
       $event.preventDefault();
       const touches = $event.changedTouches;
 
-      for(let i; i < touches.length; i++) {
+      for(let i = 0; i < touches.length; i++) {
         const index = this.ongoingTouchIndexById(touches[i].identifier);
         if(index >= 0) {
           this.context.beginPath();
@@ -108,7 +108,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       $event.preventDefault();
       const touches = $event.changedTouches;
 
-      for(let i; i < touches.length; i++) {
+      for(let i = 0; i < touches.length; i++) {
         const index = this.ongoingTouchIndexById(touches[i].identifier);
 
         this.y = this.ongoingTouches[index].clientY;
@@ -131,7 +131,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
       const touches = $event.changedTouches;
 
-      for(let i; i < touches.length; i++) {
+      for(let i = 0; i < touches.length; i++) {
         this.ongoingTouches.splice(i, 1);
       }
     }
