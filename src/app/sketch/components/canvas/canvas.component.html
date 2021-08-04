@@ -1,2 +1,11 @@
-<canvas #canvas (mousedown)="onMousedown($event)" (mouseup)="onMouseup()" (mousemove)="onMousemove($event)">
+<canvas #canvas 
+  (mousedown)="onMousedown($event)" 
+  (mouseup)="onMouseup()" 
+  (mousemove)="onMousemove($event)"
+  (touchstart)="handleTouchStart($event)"
+  (touchend)="handleTouchEnd($event)"
+  (touchmove)="handleTouchMove($event)"
+  (touchcancel)="handleTouchCancel($event)"
+  (touchleave)="handleTouchEnd($event)"
+  >
 </canvas>

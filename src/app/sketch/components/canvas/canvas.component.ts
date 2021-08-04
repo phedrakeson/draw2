@@ -16,6 +16,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   private y: number = undefined;
   private size: number = 2;
   private color: string = '#000';
+  private ongoingTouches = [];
 
   private subscriptions$: Subscription[] = [];
   private resizeObservable$: Observable<Event>;
@@ -81,6 +82,74 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         this.x = x2;
         this.y = y2;
       }
+    }
+
+    public handleTouchStart($event: TouchEvent): void {
+      $event.preventDefault();
+      const touches = $event.changedTouches;
+
+      for(let i; i < touches.length; i++) this.ongoingTouches.push(this.copyTouch(touches[i]));
+    }
+
+    public handleTouchEnd($event: TouchEvent): void {
+      $event.preventDefault();
+      const touches = $event.changedTouches;
+
+      for(let i; i < touches.length; i++) {
+        const index = this.ongoingTouchIndexById(touches[i].identifier);
+        if(index >= 0) {
+          this.context.beginPath();
+          this.ongoingTouches.splice(index, 1);
+        } else console.error("Can't figure out which touch to end.");
+      };
+    }
+
+    public handleTouchMove($event: TouchEvent): void {
+      $event.preventDefault();
+      const touches = $event.changedTouches;
+
+      for(let i; i < touches.length; i++) {
+        const index = this.ongoingTouchIndexById(touches[i].identifier);
+
+        this.y = this.ongoingTouches[index].clientY;
+        this.x = this.ongoingTouches[index].clientX;
+
+        const x2 = touches[i].clientX;
+        const y2 = touches[i].clientY;
+
+        if(index >= 0) {
+          this.drawLine(this.x, this.y, x2, y2, this.size, this.color);
+          this.drawCircle(this.x, this.y, this.size, this.color);
+
+          this.ongoingTouches.splice(index, 1, this.copyTouch(touches[i]));
+        } else console.error("Can't figure out which touch to continue");
+      };
+    }
+
+    public handleTouchCancel($event: TouchEvent): void {
+      $event.preventDefault();
+
+      const touches = $event.changedTouches;
+
+      for(let i; i < touches.length; i++) {
+        this.ongoingTouches.splice(i, 1);
+      }
+    }
+    
+  //#endregion
+
+  //#region Screen recognitions utilities
+    private copyTouch(touch: Touch) {
+      return { identifier: touch.identifier, clientX: touch.clientX, clientY: touch.clientY };
+    }
+
+    private ongoingTouchIndexById(idToFind) {
+      for (var i=0; i < this.ongoingTouches.length; i++) {
+        var id = this.ongoingTouches[i].identifier;
+    
+        if (id == idToFind) return i;
+      }
+      return -1;
     }
   //#endregion
 
