@@ -143,7 +143,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       return { identifier: touch.identifier, clientX: touch.clientX, clientY: touch.clientY };
     }
 
-    private ongoingTouchIndexById(idToFind) {
+    private ongoingTouchIndexById(idToFind): number {
       for (var i=0; i < this.ongoingTouches.length; i++) {
         var id = this.ongoingTouches[i].identifier;
     
@@ -168,6 +168,13 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.context.arc(x, y, size, 0, Math.PI * 2);
       this.context.fillStyle = color;
       this.context.fill();
+    }
+
+    private drawText(text: string, x: number, y: number, color: string, size: number, font: string = 'sans-serif'): void {
+      this.context.beginPath();
+      this.context.font = `${size * 2}px ${font}`;
+      this.context.fillStyle = color;
+      this.context.fillText(text, x, y);
     }
   //#endregion
 
