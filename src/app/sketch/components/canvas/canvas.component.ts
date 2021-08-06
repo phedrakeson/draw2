@@ -28,6 +28,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.setupObservables();
+    this.sketch.currentMessage.subscribe((data) => console.log(data, 'valor emitido'))
   }
 
   ngAfterViewInit(): void {
