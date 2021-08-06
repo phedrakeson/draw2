@@ -15,12 +15,24 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  test() {
-    this.sketch.desenhar();
+  increasePencilSize() {
+    this.sketch.increaseSize();
   }
 
-  a() {
-    this.sketch.borracha();
+  decreasePencilSize() {
+    this.sketch.decreaseSize();
+  }
+
+  usePencil() {
+    this.sketch.swapToPencil();
+  }
+
+  useEraser() {
+    this.sketch.swapToEraser();
+  }
+
+  clearCanvas() {
+    this.sketch.clearCanvas();
   }
 
 }

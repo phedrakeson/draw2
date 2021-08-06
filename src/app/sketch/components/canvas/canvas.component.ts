@@ -28,7 +28,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.setupObservables();
-    this.sketch.currentMessage.subscribe((data) => console.log(data, 'valor emitido'))
+    this.sketch.currentMessage.subscribe(data => {
+
+    })
   }
 
   ngAfterViewInit(): void {
@@ -51,8 +53,14 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.listenToObservables();
     }
 
+    private handleConfigurationStates(states: any): void {
+      this.size = states.size;
+    }
+
     private listenToObservables(): void {
       this.subscriptions$.push( this.resizeObservable$.subscribe( evt => this.updateCanvasSize() ) );
+      this.sketch.canClearCanvas.subscribe(value => value ? '' : '');
+      this.sketch.currentMessage.subscribe(states => this.handleConfigurationStates(states));
     }
 
   //#endregion

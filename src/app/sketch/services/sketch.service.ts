@@ -7,14 +7,16 @@ import { BehaviorSubject } from 'rxjs';
 export class SketchService {
   
   private _size: number = 2;
-  private currentState: states = 'lapis';
+  private _currentState: states = 'pencil';
 
   private messageSource = new BehaviorSubject({
     size: this.size,
     state: this.currentState
   });
+  private clearCanvasState = new BehaviorSubject(false);
 
   public currentMessage = this.messageSource.asObservable();
+  public canClearCanvas = this.clearCanvasState.asObservable();
 
   constructor() { }
 
@@ -22,11 +24,11 @@ export class SketchService {
     return this._size;
   }
 
-  eventSubscriber( func: any) {
-    this.currentMessage.subscribe(func)
+  get currentState(): states {
+    return this._currentState;
   }
 
-  eventEmitter() {
+  private eventEmitter(): void {
     const data = {
       size: this._size,
       state: this.currentState
@@ -34,28 +36,28 @@ export class SketchService {
     this.messageSource.next(data);
   }
 
-  increaseSize() {
+  increaseSize(): void {
     this._size += 2;
     this.eventEmitter();
   }
 
-  decreaseSize() {
+  decreaseSize(): void {
     this._size -= 2;
     this.eventEmitter();
   }
 
-  desenhar() {
-    this.currentState = 'lapis';
+  swapToPencil(): void {
+    this._currentState = 'pencil';
     this.eventEmitter();
   }
 
-  borracha() {
-    this.currentState = 'borracha';
+  swapToEraser(): void {
+    this._currentState = 'eraser';
     this.eventEmitter();
   }
 
-  limparCanvas() {
-    this.eventEmitter();
+  clearCanvas(): void {
+    this.clearCanvasState.next(true);
   }
 
 
@@ -64,4 +66,4 @@ export class SketchService {
 
 }
 
-export type states = 'borracha' | 'lapis';
+export type states = 'eraser' | 'pencil';
