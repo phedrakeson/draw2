@@ -1,7 +1,12 @@
 <nav class="h-1/2	p-3 shadow-lg bg-indigo-200 border border-indigo-100 rounded-r-lg z-10 absolute top-1/2">
   <ul>
+
     <li (click)="increasePencilSize()">
       <i class="icon increase"></i>
+    </li>
+
+    <li class="text-center">
+      <span class="inline-block text-lg text-bold">{{ currentPencilSize }}</span>
     </li>
 
     <li (click)="decreasePencilSize()">

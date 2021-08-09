@@ -9,11 +9,18 @@ import { SketchService } from 'src/app/sketch/services/sketch.service';
 export class ToolbarComponent implements OnInit {
   @ViewChild('pencil') pencil: ElementRef;
 
+  private _currentPencilSize: number = 0;
+
   constructor(
     private sketch: SketchService
   ) { }
 
+  get currentPencilSize(): number {
+    return this._currentPencilSize;
+  }
+
   ngOnInit(): void {
+    this.sketch.currentMessage.subscribe(config => this._currentPencilSize = config.size);
   }
 
   increasePencilSize() {
