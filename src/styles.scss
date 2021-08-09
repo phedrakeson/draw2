@@ -24,3 +24,14 @@ body {
   position: relative;
   min-height: 100%;
 }
+
+.icon {
+  display: block;
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  &.pencil {
+    background-image: url(assets/icons/pencil.svg);
+  }
+}
