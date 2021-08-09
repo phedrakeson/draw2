@@ -1,6 +1,7 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+@import './assets/animations.scss';
 
 * {
   padding: 0;
@@ -27,9 +28,11 @@ body {
 
 .icon {
   display: block;
-  background-size: cover;
-  width: 18px;
-  height: 18px;
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   &.pencil {
     background-image: url(assets/icons/pencil.svg);
@@ -40,5 +43,11 @@ body {
   &.decrease {
     background-image: url(assets/icons/minus.svg);
   }
+}
+
+.selected {
+  animation: jump 250ms forwards;
+  background-color: #f1e7fe;
+  border-radius: .4rem;
 }
 

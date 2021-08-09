@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SketchService } from 'src/app/sketch/services/sketch.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { SketchService } from 'src/app/sketch/services/sketch.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
+  @ViewChild('pencil') pencil: ElementRef;
 
   constructor(
     private sketch: SketchService
@@ -33,6 +34,25 @@ export class ToolbarComponent implements OnInit {
 
   clearCanvas() {
     this.sketch.clearCanvas();
+  }
+
+  toggleTools(id: string): void {
+    
+    this.pencil.nativeElement.classList.remove("selected");
+
+    switch (id) {
+      // case "text":
+      //   text.classList.add("selected");
+      //   break;
+
+      case "pencil":
+        this.pencil.nativeElement.classList.add("selected");
+        break;
+        
+      // case "eraser":
+      //   eraser.classList.add("selected");
+      //   break;
+    }
   }
 
 }
