@@ -22,7 +22,7 @@ Toolbar é o componente da view que controla as configurações do canvas atrav�
 
 Canvas é o componente da view que contém todos os métodos para o funcionamento do board, o mesmo também escuta pelo Sketch por ordens do que deve fazer.
 
-Sketch é o componente de alto nível que vai configurar e emitir os estados do canvas, é ele quem controla:
+Sketch é o componente de alto nível que vai configurar e emitir os estados do canvas, fornecendo a comunicação entre Toolbar e Canvas é ele quem controla:
 - Tamanho máximo e mínimo das ferramentas Lápis/Borracha/Texto;
 - Cor a ser utilizada;
 - O estado atual da ferramenta: Se é Lápis ou Borracha;
