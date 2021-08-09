@@ -2,3 +2,7 @@ nav {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+ul > *:not(:last-child) {
+  @apply mb-2;
+}
