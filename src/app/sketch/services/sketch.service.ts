@@ -37,13 +37,19 @@ export class SketchService {
   }
 
   increaseSize(): void {
-    this._size += 2;
-    this.eventEmitter();
+    const MAX_SIZE = 28;
+    if(this._size < MAX_SIZE) {
+      this._size += 2;
+      this.eventEmitter();
+    } 
   }
 
   decreaseSize(): void {
-    this._size -= 2;
-    this.eventEmitter();
+    const MIN_SIZE = 2;
+    if(this._size > MIN_SIZE) {
+      this._size -= 2;
+      this.eventEmitter();
+    }
   }
 
   swapToPencil(): void {
