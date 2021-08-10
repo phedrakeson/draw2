@@ -30,8 +30,8 @@ Sketch é o componente de alto nível que vai configurar e emitir os estados do 
 
 
 Tecnologias utilizadas:
-- Angular 12
-- Tailwind CSS
+- Angular 12;
+- Tailwind CSS;
 
 ### Ajustes e melhorias
 
