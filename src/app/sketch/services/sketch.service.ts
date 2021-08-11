@@ -8,6 +8,7 @@ export class SketchService {
   
   private _size: number = 2;
   private _currentState: states = 'pencil';
+  private _color: string = '#000';
 
   private messageSource = new BehaviorSubject({
     size: this.size,
@@ -24,14 +25,19 @@ export class SketchService {
     return this._size;
   }
 
+  get color(): string {
+    return this._color;
+  }
+
   get currentState(): states {
     return this._currentState;
   }
 
   private eventEmitter(): void {
     const data = {
-      size: this._size,
-      state: this.currentState
+      size: this.size,
+      state: this.currentState,
+      color: this.color
     };
     this.messageSource.next(data);
   }
@@ -50,6 +56,11 @@ export class SketchService {
       this._size -= 2;
       this.eventEmitter();
     }
+  }
+
+  public changeColor(color: string): void {
+    this._color = color;
+    this.eventEmitter();
   }
 
   public swapToPencil(): void {
