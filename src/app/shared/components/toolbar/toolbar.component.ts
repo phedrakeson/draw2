@@ -23,27 +23,31 @@ export class ToolbarComponent implements OnInit {
     this.sketch.currentMessage.subscribe(config => this._currentPencilSize = config.size);
   }
 
-  increasePencilSize() {
+  public increasePencilSize():void {
     this.sketch.increaseSize();
   }
 
-  decreasePencilSize() {
+  public decreasePencilSize():void {
     this.sketch.decreaseSize();
   }
 
-  usePencil() {
+  public usePencil():void {
     this.sketch.swapToPencil();
   }
 
-  useEraser() {
+  public useEraser():void {
     this.sketch.swapToEraser();
   }
 
-  clearCanvas() {
+  public clearCanvas():void {
     this.sketch.clearCanvas();
   }
 
-  toggleTools(id: string): void {
+  public changeColor(color: string):void {
+    console.log(color)
+  }
+
+  public toggleTools(id: string): void {
     
     this.pencil.nativeElement.classList.remove("selected");
 

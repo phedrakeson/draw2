@@ -1,5 +1,5 @@
 <nav class="h-1/2	p-3 shadow-lg bg-indigo-200 border border-indigo-100 rounded-r-lg z-10 absolute top-1/2">
-  <ul>
+  <ul class="flex flex-col items-center">
 
     <li (click)="increasePencilSize()">
       <i class="icon increase"></i>
@@ -18,7 +18,7 @@
     </li>
     
     <li>
-      
+      <input type="color" name="currentColor" id="currentColor" (change)="changeColor($event.target.value)">
     </li>
   </ul>
 </nav>
