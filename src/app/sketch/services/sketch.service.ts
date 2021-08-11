@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { sketchConfigurations, states } from '../models/types.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,12 @@ export class SketchService {
   private _currentState: states = 'pencil';
   private _color: string = '#000';
 
-  private messageSource = new BehaviorSubject({
+  private messageSource = new BehaviorSubject<sketchConfigurations>({
     size: this.size,
-    state: this.currentState
+    state: this.currentState,
+    color: this.color
   });
-  private clearCanvasState = new BehaviorSubject(false);
+  private clearCanvasState = new BehaviorSubject<boolean>(false);
 
   public currentMessage = this.messageSource.asObservable();
   public canClearCanvas = this.clearCanvasState.asObservable();
@@ -82,5 +84,3 @@ export class SketchService {
   
 
 }
-
-export type states = 'eraser' | 'pencil';

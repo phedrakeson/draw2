@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { sketchConfigurations } from '../../models/types.model';
 import { SketchService } from '../../services/sketch.service';
 
 @Component({
@@ -53,8 +54,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.listenToObservables();
     }
 
-    private handleConfigurationStates(states: any): void {
+    private handleConfigurationStates(states: sketchConfigurations): void {
       this.size = states.size;
+      this.color = states.color
     }
 
     private listenToObservables(): void {
