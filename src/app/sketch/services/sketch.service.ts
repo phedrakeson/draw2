@@ -36,7 +36,7 @@ export class SketchService {
     this.messageSource.next(data);
   }
 
-  increaseSize(): void {
+  public increaseSize(): void {
     const MAX_SIZE = 28;
     if(this._size < MAX_SIZE) {
       this._size += 2;
@@ -44,7 +44,7 @@ export class SketchService {
     } 
   }
 
-  decreaseSize(): void {
+  public decreaseSize(): void {
     const MIN_SIZE = 2;
     if(this._size > MIN_SIZE) {
       this._size -= 2;
@@ -52,17 +52,17 @@ export class SketchService {
     }
   }
 
-  swapToPencil(): void {
+  public swapToPencil(): void {
     this._currentState = 'pencil';
     this.eventEmitter();
   }
 
-  swapToEraser(): void {
+  public swapToEraser(): void {
     this._currentState = 'eraser';
     this.eventEmitter();
   }
 
-  clearCanvas(): void {
+  public clearCanvas(): void {
     this.clearCanvasState.next(true);
   }
 
