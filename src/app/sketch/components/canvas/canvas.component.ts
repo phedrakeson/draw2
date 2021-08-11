@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
-import { sketchConfigurations } from '../../models/types.model';
+import { sketchConfigurations, states } from '../../models/types.model';
 import { SketchService } from '../../services/sketch.service';
 
 @Component({
@@ -15,8 +15,9 @@ export class CanvasComponent implements OnInit, AfterViewInit {
   private pressed: boolean = false;
   private x: number = undefined;
   private y: number = undefined;
-  private size: number = 2;
-  private color: string = '#000';
+  private size: number;
+  private color: string;
+  private currentTool: states;
   private ongoingTouches = [];
 
   private subscriptions$: Subscription[] = [];
@@ -56,7 +57,8 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     private handleConfigurationStates(states: sketchConfigurations): void {
       this.size = states.size;
-      this.color = states.color
+      this.color = states.color;
+      this.currentTool = states.state
     }
 
     private listenToObservables(): void {
