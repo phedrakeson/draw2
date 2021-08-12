@@ -89,11 +89,16 @@ export class CanvasComponent implements OnInit, AfterViewInit {
         const x2 = $event.offsetX;
         const y2 = $event.offsetY;
 
-        this.drawCircle(x2, y2, this.size, this.color);
-        this.drawLine(this.x, this.y, x2, y2, this.size, this.color);
+        if(this.currentTool === 'pencil') {
+          this.drawCircle(x2, y2, this.size, this.color);
+          this.drawLine(this.x, this.y, x2, y2, this.size, this.color);
         
-        this.x = x2;
-        this.y = y2;
+          this.x = x2;
+          this.y = y2;
+        } else if(this.currentTool === 'eraser') {
+          this.useEraser(x2, y2);
+        }
+        
       }
     }
 
@@ -188,6 +193,14 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       this.context.font = `${size * 2}px ${font}`;
       this.context.fillStyle = color;
       this.context.fillText(text, x, y);
+    }
+
+    private useEraser(x2: number, y2: number): void {
+      const sizeFactor = 4;
+      const eraserSize = this.size * sizeFactor;
+      const centralize = pos => pos - eraserSize / 2;
+      
+      this.context.clearRect(centralize(x2), centralize(y2), eraserSize, eraserSize);
     }
   //#endregion
 

@@ -1,24 +1,34 @@
-<nav class="h-1/2	p-3 shadow-lg bg-indigo-200 border border-indigo-100 rounded-r-lg z-10 absolute top-1/2">
+<nav class="h-4/5	p-3 shadow-lg bg-indigo-200 border border-indigo-100 rounded-r-lg z-10 absolute top-0">
   <ul class="flex flex-col items-center">
 
-    <li (click)="increasePencilSize()">
-      <i class="icon increase"></i>
-    </li>
+    <div class="p-2 border border-gray-500">
+      <li (click)="increasePencilSize()">
+        <i class="icon increase"></i>
+      </li>
+  
+      <li class="text-center">
+        <span class="inline-block text-lg text-bold">{{ currentPencilSize }}</span>
+      </li>
+  
+      <li (click)="decreasePencilSize()">
+        <i class="icon decrease"></i>
+      </li>
+    </div>
 
-    <li class="text-center">
-      <span class="inline-block text-lg text-bold">{{ currentPencilSize }}</span>
-    </li>
-
-    <li (click)="decreasePencilSize()">
-      <i class="icon decrease"></i>
+    <li class="border-b border-gray-500 pb-2">
+      <input type="color" name="currentColor" id="currentColor" (change)="changeColor($event.target.value)">
     </li>
 
     <li (click)="usePencil()">
       <i id="pencil" #pencil class="icon pencil selected" (click)="toggleTools($event.target.id)"></i>
     </li>
-    
-    <li>
-      <input type="color" name="currentColor" id="currentColor" (change)="changeColor($event.target.value)">
+
+    <li (click)="useEraser()">
+      <i id="eraser" #eraser class="icon eraser" (click)="toggleTools($event.target.id)"></i>
     </li>
+    
+    
+
+
   </ul>
 </nav>

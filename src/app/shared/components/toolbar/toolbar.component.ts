@@ -8,6 +8,7 @@ import { SketchService } from 'src/app/sketch/services/sketch.service';
 })
 export class ToolbarComponent implements OnInit {
   @ViewChild('pencil') pencil: ElementRef;
+  @ViewChild('eraser') eraser: ElementRef;
 
   private _currentPencilSize: number = 0;
 
@@ -50,6 +51,7 @@ export class ToolbarComponent implements OnInit {
   public toggleTools(id: string): void {
     
     this.pencil.nativeElement.classList.remove("selected");
+    this.eraser.nativeElement.classList.remove("selected");
 
     switch (id) {
       // case "text":
@@ -58,11 +60,13 @@ export class ToolbarComponent implements OnInit {
 
       case "pencil":
         this.pencil.nativeElement.classList.add("selected");
+        this.usePencil();
         break;
         
-      // case "eraser":
-      //   eraser.classList.add("selected");
-      //   break;
+      case "eraser":
+        this.eraser.nativeElement.classList.add("selected");
+        this.useEraser();
+        break;
     }
   }
 

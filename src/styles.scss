@@ -43,6 +43,9 @@ body {
   &.decrease {
     background-image: url(assets/icons/minus.svg);
   }
+  &.eraser {
+    background-image: url(assets/icons/eraser.svg);
+  }
 }
 
 .selected {
