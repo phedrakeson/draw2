@@ -19,12 +19,16 @@
       <input type="color" name="currentColor" id="currentColor" (change)="changeColor($event.target.value)">
     </li>
 
-    <li (click)="usePencil()">
+    <li>
       <i id="pencil" #pencil class="icon pencil selected" (click)="toggleTools($event.target.id)"></i>
     </li>
 
-    <li (click)="useEraser()">
+    <li>
       <i id="eraser" #eraser class="icon eraser" (click)="toggleTools($event.target.id)"></i>
+    </li>
+
+    <li (click)="clearCanvas()">
+      <i id="trash" #trash class="icon trash"></i>
     </li>
     
     

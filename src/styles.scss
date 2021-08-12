@@ -46,6 +46,9 @@ body {
   &.eraser {
     background-image: url(assets/icons/eraser.svg);
   }
+  &.trash {
+    background-image: url(assets/icons/trash.svg);
+  }
 }
 
 .selected {

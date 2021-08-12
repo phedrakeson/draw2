@@ -63,7 +63,7 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
     private listenToObservables(): void {
       this.subscriptions$.push( this.resizeObservable$.subscribe( evt => this.updateCanvasSize() ) );
-      this.sketch.canClearCanvas.subscribe(value => value ? '' : '');
+      this.sketch.canClearCanvas.subscribe(value => value && this.clearCanvas());
       this.sketch.currentMessage.subscribe(states => this.handleConfigurationStates(states));
     }
 
@@ -201,6 +201,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
       const centralize = pos => pos - eraserSize / 2;
       
       this.context.clearRect(centralize(x2), centralize(y2), eraserSize, eraserSize);
+    }
+
+    private clearCanvas(): void {
+      this.context.clearRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
     }
   //#endregion
 
