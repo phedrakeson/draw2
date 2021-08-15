@@ -30,9 +30,6 @@ export class CanvasComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.setupObservables();
-    this.sketch.currentMessage.subscribe(data => {
-
-    })
   }
 
   ngAfterViewInit(): void {
