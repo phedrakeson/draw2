@@ -62,9 +62,10 @@ export class CanvasComponent implements OnInit, AfterViewInit {
     }
 
     private listenToObservables(): void {
-      this.subscriptions$.push( this.resizeObservable$.subscribe( evt => this.updateCanvasSize() ) );
-      this.sketch.canClearCanvas.subscribe(value => value && this.clearCanvas());
-      this.sketch.currentMessage.subscribe(states => this.handleConfigurationStates(states));
+      const windowResizeNotification = this.resizeObservable$.subscribe( evt => this.updateCanvasSize() );
+      const clearCanvasNotification = this.sketch.canClearCanvas.subscribe(value => value && this.clearCanvas());
+      const sketchConfigurationsNotification = this.sketch.currentMessage.subscribe(states => this.handleConfigurationStates(states));
+      this.subscriptions$.push(windowResizeNotification, clearCanvasNotification, sketchConfigurationsNotification);
     }
 
   //#endregion
