@@ -38,7 +38,6 @@ Tecnologias utilizadas:
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
 - [x] Migração do core do projeto: Desenhar por mouse, mobile (multiplos toques) e configurações básicas;
-- [ ] Implementar versão Desktop (Electron.js);
 - [ ] Implementar desenhos colaborativos (dois jogadores);
 
 ## 📫 Contribuindo para o Draw 2.0
